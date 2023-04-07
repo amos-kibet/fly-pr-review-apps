@@ -25,3 +25,5 @@ inputs:
     default: true
   secrets:
     description: Secrets to be set on the app. Separate multiple secrets with a space.
+  setup_cmd:
+    description: Command that needs to be run before the app is created.

@@ -24,6 +24,7 @@ REGION="${INPUT_REGION:-${FLY_REGION:-iad}}"
 ORG="${INPUT_ORG:-${FLY_ORG:-personal}}"
 IMAGE="$INPUT_IMAGE"
 CONFIG="${INPUT_CONFIG:-fly.toml}"
+SETUP_CMD="$INPUT_SETUP_CMD"
 
 # replace any dash with underscore in app name
 # fly.io does not accept dashes in volume names
@@ -60,6 +61,10 @@ fi
 # Check if app exists,
 # if not, launch it, but don't deploy yet
 if ! flyctl status --app "$APP"; then
+  if [ -n "$SETUP" ]; then
+    eval "$SETUP"
+  fi
+
   flyctl launch --no-deploy --copy-config --name "$APP" --region "$REGION" --org "$ORG"
 
   # look for "migrate" file in the app files
