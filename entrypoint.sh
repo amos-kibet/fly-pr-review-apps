@@ -61,9 +61,9 @@ fi
 # Check if app exists,
 # if not, launch it, but don't deploy yet
 if ! flyctl status --app "$APP"; then
-  if [ -n "$SETUP" ]; then
-    echo "$SETUP"
-    eval "$SETUP"
+  if [ -n "$SETUP_CMD" ]; then
+    echo "$SETUP_CMD"
+    eval "$SETUP_CMD"
   fi
 
   flyctl launch --no-deploy --copy-config --name "$APP" --region "$REGION" --org "$ORG"
