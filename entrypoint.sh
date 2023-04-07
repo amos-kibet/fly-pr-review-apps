@@ -62,6 +62,7 @@ fi
 # if not, launch it, but don't deploy yet
 if ! flyctl status --app "$APP"; then
   if [ -n "$SETUP" ]; then
+    echo "$SETUP"
     eval "$SETUP"
   fi
 
