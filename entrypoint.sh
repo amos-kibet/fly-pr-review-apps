@@ -63,7 +63,7 @@ fi
 # if not, launch it, but don't deploy yet
 if ! flyctl status --app "$APP"; then
   flyctl apps create "$APP" --org "$ORG"
-  fly scale vm "$VM" --memory "$VM_MEMORY"
+  fly scale vm "$VM" --memory "$VM_MEMORY" --app "$APP"
 
   # look for "migrate" file in the app files
   # if it exists, the app probably needs DB.
